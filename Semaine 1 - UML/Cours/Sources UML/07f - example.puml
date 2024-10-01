@@ -1,0 +1,67 @@
+@startuml
+!pragma layout smetana
+!define ERD
+
+title Entité-Relation : Gestion des commandes de repas en ligne
+
+entity "Client" {
+  * id : Int
+  --
+  nom : String
+  email : String
+  adresse : String
+}
+
+entity "Commande" {
+  * id : Int
+  --
+  date_commande : Date
+  statut : String
+}
+
+entity "Plat" {
+  * id : Int
+  --
+  nom : String
+  description : String
+  prix : Float
+}
+
+entity "Menu" {
+  * id : Int
+  --
+  date_maj : Date
+}
+
+entity "Cuisinier" {
+  * id : Int
+  --
+  nom : String
+  email : String
+}
+
+entity "Paiement" {
+  * id : Int
+  --
+  montant : Float
+  statut : String
+  date_paiement : Date
+}
+
+entity "Livreur" {
+  * id : Int
+  --
+  nom : String
+  position : String
+  statut : String
+}
+
+' Relations entre les entités
+Client ||--o{ Commande
+Commande }o--|| Paiement
+Commande ||--o{ Plat
+Menu ||--o{ Plat
+Commande ||--o{ Cuisinier
+Commande ||--o{ Livreur
+
+@enduml
