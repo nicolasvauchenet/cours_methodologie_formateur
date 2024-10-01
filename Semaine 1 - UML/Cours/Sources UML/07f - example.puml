@@ -58,10 +58,10 @@ entity "Livreur" {
 
 ' Relations entre les entités
 Client ||--o{ Commande
-Commande }o--|| Paiement
-Commande ||--o{ Plat
-Menu ||--o{ Plat
-Commande ||--o{ Cuisinier
-Commande ||--o{ Livreur
+Commande ||--|| Paiement
+Commande }o--|{ Plat
+Menu ||--|{ Plat
+Commande }o--|{ Cuisinier
+Commande }o--|| Livreur
 
 @enduml
