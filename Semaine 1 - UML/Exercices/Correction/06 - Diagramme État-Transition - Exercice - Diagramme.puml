@@ -1,0 +1,20 @@
+@startuml
+!pragma layout smetana
+skinparam linestyle ortho
+
+title État-Transition : Transactions de Réservation de Livres
+
+[*] --> DemandeSoumise : Demande d'emprunt
+DemandeSoumise --> VérificationDisponibilité : Demande traitée
+
+state fork_disponibilite <<choice>>
+VérificationDisponibilité --> fork_disponibilite
+
+fork_disponibilite --> EnregistrementEmprunt : [livreDisponible]
+fork_disponibilite --> EmpruntRefusé : [!livreDisponible]
+
+EnregistrementEmprunt --> ConfirmationEmprunt : Emprunt enregistré
+ConfirmationEmprunt --> [*] : Confirmation envoyée
+
+EmpruntRefusé --> [*] : Notification d'indisponibilité
+@enduml

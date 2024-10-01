@@ -1,0 +1,33 @@
+@startuml
+!pragma layout smetana
+skinparam linestyle ortho
+
+title Collaboration : Gestion des commandes de repas en ligne
+
+rectangle "Client : Sophie Dupont" as client1
+rectangle "Commande : 2024-10-01" as commande1
+rectangle "Plat : Pizza Margherita" as plat1
+rectangle "Plat : Pâtes Carbonara" as plat2
+rectangle "Cuisinier : Michel" as cuisinier1
+rectangle "Livreur : Pierre" as livreur1
+
+client1 -right-> commande1 : 1. passeCommande()
+commande1 -down-> plat1 : 2. ajoutePlat(plat1)
+commande1 -down-> plat2 : 3. ajoutePlat(plat2)
+commande1 -right-> cuisinier1 : 4. prépareCommande()
+
+cuisinier1 -down-> cuisinier1 : vérifierCommande()
+cuisinier1 --> commande1 : commandeValidée()
+
+cuisinier1 -down-> plat1 : 5. préparePlat(plat1)
+plat1 --> cuisinier1 : platPrêt(plat1)
+cuisinier1 -down-> plat2 : 6. préparePlat(plat2)
+plat2 --> cuisinier1 : platPrêt(plat2)
+
+commande1 -right-> livreur1 : 7. livreCommande()
+livreur1 -up-> livreur1 : vérifierDestination()
+livreur1 --> commande1 : livraisonConfirmée()
+
+livreur1 -up-> client1 : 8. livreCommandeAuClient()
+client1 --> livreur1 : confirmerRéception()
+@enduml

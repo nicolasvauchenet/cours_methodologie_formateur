@@ -1,0 +1,39 @@
+@startuml
+!pragma layout smetana
+skinparam linestyle ortho
+
+title État-Transition : Cycle de vie d'une commande
+
+[*] --> Création : passeCommande()
+Création --> EnPréparation : commandeValidée()
+
+state EnPréparation {
+  [*] --> PréparerPlat1
+  PréparerPlat1 --> PréparerPlat2 : plat1Préparé()
+  PréparerPlat2 --> VérifierCommande : plat2Préparé()
+  VérifierCommande --> [*] : commandeValidée()
+}
+
+state fork_state <<fork>>
+EnPréparation --> fork_state : préparationTerminée()
+
+fork_state --> PréparerPlats : commencePréparation()
+fork_state --> VérifierPaiement : commenceVérificationPaiement()
+
+PréparerPlats --> PlatsPrêts : platsPréparés()
+VérifierPaiement --> PaiementValidé : paiementAccepté() [guard: paiementValidé]
+
+state join_state <<join>>
+PlatsPrêts --> join_state
+PaiementValidé --> join_state
+
+join_state --> EnCoursDeLivraison : [platsPrêts && paiementValidé]
+EnCoursDeLivraison --> Livrée : commandeLivrée()
+Livrée --> [*] : confirmerRéception()
+
+EnPréparation : préparePlat(plat1)
+EnPréparation : préparePlat(plat2)
+EnPréparation : [guard] vérifierCommande()
+EnCoursDeLivraison : vérifierDestination()
+Livrée : notifierClient()
+@enduml

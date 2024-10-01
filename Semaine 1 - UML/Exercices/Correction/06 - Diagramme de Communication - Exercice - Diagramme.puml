@@ -1,0 +1,17 @@
+@startuml
+!pragma layout smetana
+skinparam linestyle ortho
+
+title Communication : Transactions de Réservation de Livres
+
+rectangle "Lecteur : John Doe" as lecteur
+rectangle "Bibliothécaire : Alice Smith" as bibliothecaire
+rectangle "Livre : Les Misérables" as livre
+rectangle "Emprunt : Emprunt de John Doe" as emprunt
+
+lecteur -right-> bibliothecaire : 1. Demande d'emprunt
+bibliothecaire -down-> livre : 2. Vérification de la disponibilité
+livre --> bibliothecaire : 3. Livre disponible
+bibliothecaire -down-> emprunt : 4. Enregistrement de l'emprunt
+emprunt -up-> lecteur : 5. Confirmation de l'emprunt
+@enduml

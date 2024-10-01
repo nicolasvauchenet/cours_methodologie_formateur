@@ -1,0 +1,55 @@
+@startuml
+!pragma layout smetana
+skinparam objectAttributeIconSize 0
+
+title Objets : Gestion des commandes de repas en ligne
+
+object client1 {
+  nom = "Sophie Dupont"
+  email = "sophie@example.com"
+  adresse = "123 rue des Fleurs"
+}
+
+object cuisinier1 {
+  nom = "Michel"
+  email = "michel@example.com"
+}
+
+object livreur1 {
+  nom = "Pierre"
+  email = "pierre@example.com"
+  position = "Centre-ville"
+  statut = "En cours de livraison"
+}
+
+object commande1 {
+  dateCommande = "2024-10-01"
+  statut = "En préparation"
+}
+
+object plat1 {
+  nom = "Pizza Margherita"
+  description = "Tomate, Mozzarella, Basilic"
+  prix = 12.50
+}
+
+object plat2 {
+  nom = "Pâtes Carbonara"
+  description = "Pâtes, Oeuf, Parmesan, Lardons"
+  prix = 15.00
+}
+
+object menu1 {
+  dateMiseAJour = "2024-09-30"
+}
+
+client1 --> commande1 : passe
+commande1 *-- plat1 : contient
+commande1 *-- plat2 : contient
+cuisinier1 ..> commande1 : prépare
+cuisinier1 ..> plat1 : prépare
+cuisinier1 ..> plat2 : prépare
+menu1 o-- plat1 : contient
+menu1 o-- plat2 : contient
+livreur1 ..> commande1 : livre
+@enduml
