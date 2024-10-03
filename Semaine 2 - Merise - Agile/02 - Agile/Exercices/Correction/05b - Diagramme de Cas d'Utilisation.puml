@@ -1,0 +1,13 @@
+@startuml
+!pragma layout smetana
+
+actor Utilisateur
+
+usecase "Créer article" as CreerArticle
+usecase "Modifier article" as ModifierArticle
+usecase "Supprimer article" as SupprimerArticle
+
+Utilisateur --> CreerArticle
+Utilisateur --> ModifierArticle
+Utilisateur --> SupprimerArticle
+@enduml

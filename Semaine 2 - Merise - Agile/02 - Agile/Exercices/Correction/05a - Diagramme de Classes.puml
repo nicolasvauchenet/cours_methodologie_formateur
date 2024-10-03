@@ -1,0 +1,21 @@
+@startuml
+!pragma layout smetana
+
+abstract class Utilisateur {
+  - nom : String
+  - email : String
+}
+
+class Administrateur {
+}
+
+class UtilisateurRegulier {
+}
+
+class Invite {
+}
+
+Utilisateur <|-- Administrateur
+Utilisateur <|-- UtilisateurRegulier
+Utilisateur <|-- Invite
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+!pragma layout smetana
+
+actor Utilisateur
+
+participant "Interface Utilisateur" as Interface
+participant "Base de Données" as BD
+participant "API Externe" as API
+
+skinparam lifelineBorderColor white
+skinparam lifelineBackgroundColor white
+
+Utilisateur -> Interface : Demande d'action
+activate Interface
+
+Interface -> BD : Requête vers Base de Données
+activate BD
+BD --> Interface : Réponse de la Base de Données
+deactivate BD
+
+Interface -> API : Requête vers API Externe
+activate API
+API --> Interface : Réponse de l'API
+deactivate API
+
+Interface --> Utilisateur : Résultat affiché
+deactivate Interface
+
+destroy Interface
+destroy BD
+destroy API
+@enduml
