@@ -1,0 +1,88 @@
+@startuml
+!pragma layout smetana
+!define RECTANGLE class
+
+' Classes Entités
+RECTANGLE Événement {
+    - date: Date
+    - type: String
+    - statut: String
+    + créerÉvénement()
+    + ajouterÉvénement()
+    + modifierÉvénement()
+    + annulerÉvénement()
+}
+
+RECTANGLE Lieu {
+    - nom: String
+    - adresse: String
+    - capacité: int
+    + créerLieu()
+    + réserverLieu()
+    + vérifierDisponibilité()
+    + annulerRéservation()
+}
+
+RECTANGLE Participant {
+    - nom: String
+    - email: String
+    - statutInscription: String
+    + créerParticipant()
+    + inscrireParticipant()
+    + mettreÀJourInfos()
+    + annulerInscription()
+}
+
+RECTANGLE Participation {
+    - dateParticipation: Date
+    - statutParticipation: String
+    + créerParticipation()
+    + enregistrerParticipation()
+    + mettreÀJourParticipation()
+}
+
+RECTANGLE Communication {
+    + créerCommunication()
+    + ajouterMessage()
+    + archiverCommunication()
+}
+
+RECTANGLE Message {
+    - contenu: String
+    - expéditeur: String
+    - destinataire: String
+    - dateEnvoi: Date
+    + créerMessage()
+    + envoyerMessage()
+    + recevoirMessage()
+}
+
+RECTANGLE Budget {
+    - budgetPrévisionnel: float
+    - dépensesRéelles: float
+    + créerBudget()
+    + mettreÀJourDépenses()
+    + générerRapportDépenses()
+}
+
+RECTANGLE Évaluation {
+    - retourParticipants: String
+    - performanceÉvénement: String
+    + CréerÉvaluation()
+    + collecterFeedback()
+    + analyserDonnées()
+    + produireRapportÉvaluation()
+}
+
+' Relations
+Événement --> Lieu : se tient à
+Événement --> Participation : inclut
+Participation --> Participant : concerne
+Participant --> Message : envoie
+Participant --> Évaluation : répond à
+Communication --> Message : contient
+Événement --> Budget : est associé à
+Événement --> Évaluation : demande
+Communication --> Événement : concerne
+
+@enduml

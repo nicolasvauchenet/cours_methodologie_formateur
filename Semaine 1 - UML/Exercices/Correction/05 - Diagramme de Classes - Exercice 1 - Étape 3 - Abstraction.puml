@@ -1,0 +1,120 @@
+@startuml
+!define RECTANGLE class
+!pragma layout smetana
+
+' Interfaces
+interface Réservable {
+    + réserverLieu()
+    + vérifierDisponibilité()
+    + annulerRéservation()
+}
+
+interface Budgétisable {
+    + créerBudget()
+    + mettreÀJourDépenses()
+    + générerRapportDépenses()
+}
+
+interface Évaluable {
+    + collecterFeedback()
+    + analyserDonnées()
+    + produireRapportÉvaluation()
+}
+
+interface Participable {
+    + créerParticipant()
+}
+
+' Classes de Service pour la gestion des entités
+RECTANGLE ServiceLieu implements Réservable {
+    + réserverLieu()
+    + vérifierDisponibilité()
+    + annulerRéservation()
+}
+
+RECTANGLE ServiceBudget implements Budgétisable {
+    + créerBudget()
+    + mettreÀJourDépenses()
+    + générerRapportDépenses()
+}
+
+RECTANGLE ServiceÉvaluation implements Évaluable {
+    + collecterFeedback()
+    + analyserDonnées()
+    + produireRapportÉvaluation()
+}
+
+' Classes Entités
+RECTANGLE Événement {
+    - date: Date
+    - type: String
+    - statut: String
+    + créerÉvénement(): Événement
+    + modifierÉvénement()
+    + annulerÉvénement()
+}
+
+RECTANGLE Lieu {
+    - nom: String
+    - adresse: String
+    - capacité: int
+    + CréerLieu(): Lieu
+}
+
+RECTANGLE Participant implements Participable {
+    - nom: String
+    - email: String
+    - statutInscription: String
+}
+
+RECTANGLE Participation {
+    - dateParticipation: Date
+    - statutParticipation: String
+    + créerParticipation(): Participation
+}
+
+RECTANGLE Communication {
+    - destinataire: String
+    - expéditeur: String
+    + créerCommunication(): Communication
+}
+
+RECTANGLE Message {
+    - contenu: String
+    - expéditeur: String
+    - destinataire: String
+    - dateEnvoi: Date
+    + créerMessage(): Message
+}
+
+RECTANGLE Budget {
+    - budgetPrévisionnel: float
+    - dépensesRéelles: float
+    + créerBudget(): Budget
+}
+
+RECTANGLE Évaluation {
+    - retourParticipants: String
+    - performanceÉvénement: String
+    + créerÉvaluation(): Évaluation
+}
+
+' Relations entre les classes
+Lieu --> Réservable : se tient à
+Événement --> Réservable : utilise
+Événement --> Budgétisable : a
+Événement --> Participation : inclut
+Événement --> Évaluable : produit feedback
+Communication --> Message : contient
+Budget --> Budgétisable : gère
+Évaluation --> Participable : reçoit feedback
+Participable --> Communication : informe
+Événement --> Réservable : réservation
+Événement --> Participation : inclut
+Événement --> Communication : coordonne
+ServiceBudget --> Budgétisable : gère
+ServiceÉvaluation --> Participable : reçoit feedback
+Événement --> Budget : alloue budget
+Événement --> Évaluation : génère rapport
+
+@enduml

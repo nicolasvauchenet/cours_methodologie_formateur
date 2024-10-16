@@ -1,0 +1,117 @@
+@startuml
+!pragma layout smetana
+!define RECTANGLE class
+
+' Classes Entités
+RECTANGLE Événement {
+    - date: Date
+    - type: String
+    - statut: String
+    + créerÉvénement()
+    + modifierÉvénement()
+    + annulerÉvénement()
+}
+
+RECTANGLE Lieu {
+    - nom: String
+    - adresse: String
+    - capacité: int
+    + créerLieu()
+}
+
+RECTANGLE Participant {
+    - nom: String
+    - email: String
+    - statutInscription: String
+    + créerParticipant()
+}
+
+RECTANGLE Participation {
+    - dateParticipation: Date
+    - statutParticipation: String
+    + créerParticipation()
+}
+
+RECTANGLE Communication {
+    + créerCommunication()
+}
+
+RECTANGLE Message {
+    - contenu: String
+    - expéditeur: String
+    - destinataire: String
+    - dateEnvoi: Date
+    + créerMessage()
+}
+
+RECTANGLE Budget {
+    - budgetPrévisionnel: float
+    - dépensesRéelles: float
+    + créerBudget()
+}
+
+RECTANGLE Évaluation {
+    - retourParticipants: String
+    - performanceÉvénement: String
+    + CréerÉvaluation()
+}
+
+' Classes de Service
+RECTANGLE ServiceLieu {
+    + réserverLieu()
+    + vérifierDisponibilité()
+    + annulerRéservation()
+}
+
+RECTANGLE ServiceParticipant {
+    + inscrireParticipant()
+    + mettreÀJourInfos()
+    + annulerInscription()
+}
+
+RECTANGLE ServiceParticipation {
+    + enregistrerParticipation()
+    + mettreÀJourParticipation()
+}
+
+RECTANGLE ServiceCommunication {
+    + ajouterMessage()
+    + archiverCommunication()
+}
+
+RECTANGLE ServiceMessage {
+    + envoyerMessage()
+    + recevoirMessage()
+}
+
+RECTANGLE ServiceBudget {
+    + créerBudget()
+    + mettreÀJourDépenses()
+    + générerRapportDépenses()
+}
+
+RECTANGLE ServiceÉvaluation {
+    + collecterFeedback()
+    + analyserDonnées()
+    + produireRapportÉvaluation()
+}
+
+' Relations
+Événement --> Lieu : se tient à
+Événement --> Participation : inclut
+Participation --> Participant : concerne
+Participant --> Message : envoie
+Participant --> Évaluation : répond à
+Communication --> Message : contient
+Événement --> Budget : est associé à
+Événement --> Évaluation : demande
+Communication --> Événement : concerne
+ServiceLieu --> Lieu : gère
+ServiceParticipant --> Participant : gère
+ServiceParticipation --> Participation : gère
+ServiceCommunication --> Communication : gère
+ServiceMessage --> Message : gère
+ServiceBudget --> Budget : gère
+ServiceÉvaluation --> Évaluation : gère
+
+@enduml
