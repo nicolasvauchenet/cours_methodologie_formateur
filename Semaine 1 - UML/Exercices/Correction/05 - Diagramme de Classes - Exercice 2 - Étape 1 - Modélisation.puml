@@ -1,0 +1,65 @@
+@startuml
+!pragma layout smetana
+!define RECTANGLE class
+
+' Classes Entités
+RECTANGLE Lecteur {
+    - nom: String
+    - identifiant: String
+    - email: String
+    + emprunterLivre(livre: Livre)
+    + retournerLivre(livre: Livre)
+}
+
+RECTANGLE Bibliothécaire {
+    - nom: String
+    - identifiant: String
+    - email: String
+    + enregistrerEmprunt(emprunt: Emprunt)
+    + enregistrerRetour(emprunt: Emprunt)
+    + envoyerRappel(rappel: Rappel)
+}
+
+RECTANGLE Livre {
+    - titre: String
+    - auteur: String
+    - statut: String
+    + définirStatut(statut: String)
+}
+
+RECTANGLE Emprunt {
+    - livre: Livre
+    - lecteur: Lecteur
+    - dateEmprunt: Date
+    - dateRetourPrévue: Date
+    - dateRetourRéelle: Date
+    + vérifierStatut()
+}
+
+RECTANGLE Rappel {
+    - emprunt: Emprunt
+    - dateRappel: Date
+    - message: String
+    - statut: String
+    + envoyer()
+    + planifier()
+    + annuler()
+}
+
+RECTANGLE Bibliothèque {
+    - nom: String
+    - adresse: String
+    + ajouterLivre(livre: Livre)
+    + retirerLivre(livre: Livre)
+    + rechercherLivre(titre: String)
+}
+
+' Relations
+Lecteur --> Emprunt : réalise
+Bibliothécaire --> Emprunt : gère
+Bibliothécaire --> Rappel : gère
+Bibliothèque --> Livre : possède
+Emprunt --> Livre : concerne
+Rappel --> Emprunt : concerne
+
+@enduml

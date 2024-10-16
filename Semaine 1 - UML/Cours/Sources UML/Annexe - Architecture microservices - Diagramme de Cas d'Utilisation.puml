@@ -1,0 +1,46 @@
+@startuml
+!pragma layout smetana
+left to right direction
+
+actor Client
+actor Admin
+
+rectangle "Service Contrôleur" as SCtrl {
+    usecase "Gérer Commande" as UC1
+    usecase "Effectuer Paiement" as UC2
+    usecase "Organiser Livraison" as UC3
+    usecase "Suivre Commande" as UC5
+}
+
+rectangle "Service Commande" as SComm {
+    usecase "Valider Commande" as UC1_1
+    usecase "Suivre Commande" as UC5_1
+}
+
+rectangle "Service Paiement" as SPay {
+    usecase "Effectuer Transaction" as UC2_1
+}
+
+rectangle "Service Livraison" as SLiv {
+    usecase "Planifier Livraison" as UC3_1
+}
+
+rectangle "Service Produit" as SProd {
+    usecase "Gérer Produits" as UC4
+    usecase "Gérer Stock" as UC6
+}
+
+Client -- UC1
+Client -- UC2
+Client -- UC3
+Client -- UC5
+
+SCtrl -- SComm
+SCtrl -- SPay
+SCtrl -- SLiv
+SCtrl -- SComm
+
+Admin -- UC4
+Admin -- UC6
+
+@enduml

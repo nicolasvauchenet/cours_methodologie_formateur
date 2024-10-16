@@ -1,0 +1,113 @@
+@startuml
+!pragma layout smetana
+!define RECTANGLE class
+
+' Interfaces
+interface Empruntable {
+    + getNom() : String
+}
+
+interface Stockable {
+    + ajouterRessource(ressource: RessourceEmpruntable)
+    + retirerRessource(ressource: RessourceEmpruntable)
+    + rechercherRessource(titre: String)
+}
+
+interface Gérable {
+    + emprunterRessource(lecteur: Empruntable, ressource: RessourceEmpruntable)
+    + retournerRessource(lecteur: Empruntable, ressource: RessourceEmpruntable)
+    + enregistrerEmprunt(emprunt: Emprunt)
+    + enregistrerRetour(emprunt: Emprunt)
+}
+
+interface Rappelable {
+    + envoyerRappel(rappel: IRappel)
+    + planifierRappel(rappel: IRappel)
+    + annulerRappel(rappel: IRappel)
+}
+
+interface RessourceEmpruntable {
+    + définirStatut(statut: String)
+}
+
+interface IRappel {
+    + envoyer()
+    + planifier()
+    + annuler()
+}
+
+' Classe de Service pour la gestion des emprunts
+RECTANGLE ServiceEmprunt implements Gérable {
+    + emprunterRessource(lecteur: Empruntable, ressource: RessourceEmpruntable)
+    + retournerRessource(lecteur: Empruntable, ressource: RessourceEmpruntable)
+    + enregistrerEmprunt(emprunt: Emprunt)
+    + enregistrerRetour(emprunt: Emprunt)
+}
+
+' Classe de Service pour la gestion des rappels
+RECTANGLE ServiceRappel implements Rappelable {
+    + envoyerRappel(rappel: IRappel)
+    + planifierRappel(rappel: IRappel)
+    + annulerRappel(rappel: IRappel)
+}
+
+' Classes Entités
+RECTANGLE Lecteur implements Empruntable {
+    - nom: String
+    - identifiant: String
+    - email: String
+    + getNom() : String
+}
+
+RECTANGLE Bibliothécaire {
+    - nom: String
+    - identifiant: String
+    - email: String
+}
+
+RECTANGLE Livre implements RessourceEmpruntable {
+    - titre: String
+    - auteur: String
+    - statut: String
+    + définirStatut(statut: String)
+}
+
+RECTANGLE Emprunt {
+    - ressource: RessourceEmpruntable
+    - lecteur: Empruntable
+    - dateEmprunt: Date
+    - dateRetourPrévue: Date
+    - dateRetourRéelle: Date
+    + vérifierStatut()
+}
+
+RECTANGLE Rappel implements IRappel {
+    - emprunt: Emprunt
+    - dateRappel: Date
+    - message: String
+    - statut: String
+    + envoyer()
+    + planifier()
+    + annuler()
+}
+
+' Classe de service pour la gestion de la bibliothèque
+RECTANGLE Bibliothèque implements Stockable {
+    - nom: String
+    - adresse: String
+    + ajouterRessource(ressource: RessourceEmpruntable)
+    + retirerRessource(ressource: RessourceEmpruntable)
+    + rechercherRessource(titre: String)
+}
+
+' Relations
+Empruntable o-- Emprunt
+Empruntable o-- RessourceEmpruntable
+Stockable o-- RessourceEmpruntable
+IRappel <.. Emprunt
+Bibliothécaire --> Empruntable: gère
+Bibliothécaire --> Rappelable: utilise
+ServiceRappel ..> IRappel
+ServiceEmprunt ..> Emprunt
+
+@enduml
