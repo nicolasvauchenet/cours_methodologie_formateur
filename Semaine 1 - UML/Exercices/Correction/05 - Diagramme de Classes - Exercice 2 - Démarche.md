@@ -70,9 +70,9 @@ préparant le système à accepter de nouvelles implémentations sans modifier l
   ressource empruntable, qu'il s'agisse de Livre ou d'autres types de ressources qui pourraient être ajoutés
   ultérieurement.
 
-- **Évolutivité :** Grâce aux interfaces, le système est ouvert aux évolutions. Si, par exemple, tu voulais ajouter un
-  `RappelSMS` ou `RappelEmail`, tu pourrais simplement créer une nouvelle classe implémentant l'interface `IRappel` sans
-  changer les classes existantes. De même, tu peux ajouter d'autres types de ressources empruntables en implémentant
+- **Évolutivité :** Grâce aux interfaces, le système est ouvert aux évolutions. Si, par exemple, on voulait ajouter un
+  `RappelSMS` ou `RappelEmail`, on pourrait simplement créer une nouvelle classe implémentant l'interface `IRappel` sans
+  changer les classes existantes. De même, on peut ajouter d'autres types de ressources empruntables en implémentant
   `RessourceEmpruntable`.
 
 - **Dépendance sur les abstractions :** Les classes interagissent désormais avec les interfaces plutôt qu’avec des
