@@ -1,0 +1,16 @@
+@startuml
+!pragma layout smetana
+left to right direction
+title 5.3.1 - Diagramme de Cas d'Utilisation : Gestion de la billetterie
+
+actor "Festivalier" as festivalier
+actor "Responsable Billetterie" as billetterie
+actor "Système de billetterie" as systeme
+
+festivalier --> (Acheter un billet)
+festivalier --> (Recevoir un billet électronique)
+billetterie --> (Gérer les ventes de billets)
+systeme --> (Vérifier la disponibilité des billets)
+systeme --> (Suivre les ventes en temps réel)
+
+@enduml

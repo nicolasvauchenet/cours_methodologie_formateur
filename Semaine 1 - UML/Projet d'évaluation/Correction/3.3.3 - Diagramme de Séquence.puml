@@ -1,0 +1,17 @@
+@startuml
+!pragma layout smetana
+title 3.3.3 - Diagramme de Séquence : Gestion du matériel
+
+actor "Régisseur technique" as regisseur
+participant "Système de gestion logistique" as systeme
+participant "Équipe technique" as equipe
+participant "Inventaire" as inventaire
+
+regisseur -> systeme : Demande de matériel pour scène
+systeme -> inventaire : Vérifier disponibilité matériel
+inventaire --> systeme : Matériel disponible
+systeme -> equipe : Assigner matériel à l'équipe
+equipe --> systeme : Confirmer réception matériel
+systeme -> regisseur : Matériel assigné avec succès
+
+@enduml

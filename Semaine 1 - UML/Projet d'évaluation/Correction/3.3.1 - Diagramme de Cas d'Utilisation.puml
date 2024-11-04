@@ -1,0 +1,16 @@
+@startuml
+!pragma layout smetana
+left to right direction
+title 3.3.1 - Diagramme de Cas d'Utilisation : Logistique du festival
+
+actor "Régisseur technique" as regisseur
+actor "Équipe technique" as equipe
+actor "Système de gestion logistique" as systeme
+
+regisseur --> (Planifier la logistique du matériel)
+regisseur --> (Coordonner les équipes techniques)
+equipe --> (Recevoir les ordres de mission)
+systeme --> (Gérer l'inventaire du matériel)
+systeme --> (Suivi des tâches des équipes techniques)
+
+@enduml

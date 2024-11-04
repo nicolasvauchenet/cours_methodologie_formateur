@@ -1,0 +1,33 @@
+@startuml
+!pragma layout smetana
+title 4.3.4 - Diagramme de Classes : Gestion des campagnes publicitaires
+
+class ResponsableMarketing {
+    +nom : String
+    +créerCampagne()
+    +analyserImpact()
+}
+
+class Campagne {
+    +nom : String
+    +cible : String
+    +canal : String
+    +lancerCampagne()
+}
+
+class Festivalier {
+    +nom : String
+    +email : String
+    +interagir()
+}
+
+class Statistiques {
+    +interactions : int
+    +analyser()
+}
+
+ResponsableMarketing "1" -- "0..*" Campagne : crée
+Campagne -- Statistiques : collecte
+Festivalier -- Campagne : interagit avec
+
+@enduml

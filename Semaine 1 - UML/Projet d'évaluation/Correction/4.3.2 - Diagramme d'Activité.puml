@@ -1,0 +1,19 @@
+@startuml
+!pragma layout smetana
+title 4.3.2 - Diagramme d'Activité : Gestion des campagnes publicitaires
+
+start
+:Créer une nouvelle campagne publicitaire;
+:Définir la cible (festivaliers, réseaux sociaux);
+:Choisir les canaux de diffusion (newsletter, réseaux sociaux);
+:Planifier l'envoi;
+if (Campagne validée ?) then (oui)
+    :Lancer la campagne;
+    :Suivi des interactions;
+else (non)
+    :Modifier la campagne;
+endif
+:Collecter les statistiques;
+:Analyser l'impact;
+stop
+@enduml

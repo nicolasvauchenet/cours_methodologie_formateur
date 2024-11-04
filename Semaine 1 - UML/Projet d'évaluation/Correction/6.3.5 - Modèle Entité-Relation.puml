@@ -1,0 +1,32 @@
+@startuml
+!pragma layout smetana
+title 6.3.5 - Modèle Entité-Relation : Gestion des budgets et des ressources
+
+entity ResponsableFinancier {
+    *id : int
+    *nom : String
+}
+
+entity Budget {
+    *id : int
+    *montant : float
+    *solde : float
+}
+
+entity RessourceHumaine {
+    *id : int
+    *nom : String
+    *poste : String
+}
+
+entity RapportFinancier {
+    *id : int
+    *date : Date
+    *montantDépenses : float
+}
+
+ResponsableFinancier ||--o{ Budget : "gère"
+Budget ||--o{ RapportFinancier : "génère"
+ResponsableFinancier ||--o{ RessourceHumaine : "gère"
+
+@enduml

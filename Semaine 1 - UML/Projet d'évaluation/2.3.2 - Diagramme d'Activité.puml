@@ -1,0 +1,16 @@
+@startuml
+!pragma layout smetana
+title 2.3.2 - Diagramme d'Activité : Gestion de l'hébergement des artistes
+
+start
+:Recevoir demande d'hébergement de l'artiste;
+:Vérifier disponibilité des hôtels;
+if (Disponibilité ?) then (oui)
+    :Réserver hébergement;
+    :Envoyer confirmation à l'artiste;
+else (non)
+    :Proposer autre hébergement;
+endif
+:Coordonner transport de l'artiste vers l'hôtel;
+stop
+@enduml

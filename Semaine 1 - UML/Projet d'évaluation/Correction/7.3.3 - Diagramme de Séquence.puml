@@ -1,0 +1,17 @@
+@startuml
+!pragma layout smetana
+title 7.3.3 - Diagramme de Séquence : Gestion des urgences
+
+actor "Responsable Sécurité" as securite
+participant "Système de gestion des urgences" as systeme
+participant "Agent de sécurité" as agent
+participant "Équipe de secours" as secours
+
+agent -> systeme : Signaler un incident
+systeme -> securite : Alerter le responsable sécurité
+systeme -> secours : Alerter les équipes de secours
+securite -> agent : Coordonne l'intervention
+agent -> systeme : Confirmer la prise en charge
+systeme -> securite : Mise à jour de l'état de l'incident
+
+@enduml

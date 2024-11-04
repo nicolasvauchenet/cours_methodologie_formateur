@@ -1,0 +1,16 @@
+@startuml
+!pragma layout smetana
+title 9.3.3 - Diagramme de Séquence : Analyse des performances des artistes
+
+actor "Responsable d'analyse" as responsable
+participant "Système d'analyse des performances" as systeme
+participant "Base de données" as bdd
+participant "Artiste" as artiste
+
+responsable -> systeme : Demander les données de performance
+systeme -> bdd : Récupérer les données sur les performances
+bdd --> systeme : Envoyer les données de performance
+systeme -> responsable : Générer un rapport d'analyse
+responsable -> artiste : Partager les résultats de performance
+
+@enduml

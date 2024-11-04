@@ -1,0 +1,16 @@
+@startuml
+!pragma layout smetana
+title 6.3.2 - Diagramme d'Activité : Suivi des dépenses
+
+start
+:Recevoir une nouvelle dépense;
+:Vérifier si la dépense est dans le budget;
+if (Budget suffisant ?) then (oui)
+    :Valider la dépense;
+    :Mettre à jour le solde du budget;
+else (non)
+    :Rejeter ou ajuster la dépense;
+endif
+:Générer un rapport de suivi;
+stop
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+!pragma layout smetana
+title 5.3.2 - Diagramme d'Activité : Vente de billets
+
+start
+:Sélection du billet par le festivalier;
+:Vérification de la disponibilité du billet;
+if (Billet disponible ?) then (oui)
+    :Procéder au paiement;
+    :Envoyer le billet électronique;
+else (non)
+    :Alerter que le billet est épuisé;
+endif
+:Confirmer la vente au festivalier;
+stop
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+!pragma layout smetana
+title 1.3.3 - Diagramme de Séquence : Attribution des artistes aux créneaux horaires
+
+actor "Régisseur artistique" as regisseur
+participant "Système de programmation" as systeme
+participant "Base de données" as bdd
+participant "Artiste" as artiste
+
+regisseur -> systeme : Demande d'attribution de créneau
+systeme -> bdd : Vérifier disponibilité du créneau
+bdd --> systeme : Créneau disponible
+systeme -> artiste : Envoyer notification d'attribution
+artiste --> systeme : Confirmer réception
+systeme -> regisseur : Confirmation d'attribution effectuée
+
+@enduml

@@ -1,0 +1,94 @@
+@startuml
+!pragma layout smetana
+title Diagramme de Classes Global : Système du Festival de Musique
+
+' Classes principales pour les artistes et performances
+class Artiste {
+    +nom : String
+    +genre : String
+}
+
+class Performance {
+    +horaire : Date
+    +scène : String
+}
+
+class Scène {
+    +nom : String
+    +localisation : String
+}
+
+Artiste "1" -- "0..*" Performance : participe à
+Scène "1" -- "0..*" Performance : accueille
+
+' Classes principales pour la billetterie
+class Festivalier {
+    +nom : String
+    +email : String
+}
+
+class Billet {
+    +numéro : String
+    +prix : float
+    +date : Date
+}
+
+Festivalier "1" -- "0..*" Billet : achète
+Performance "1" -- "0..*" Billet : associé à
+
+' Classes principales pour la logistique
+class AgentSécurité {
+    +nom : String
+    +poste : String
+}
+
+class Matériel {
+    +type : String
+    +quantité : int
+}
+
+class Incident {
+    +type : String
+    +localisation : String
+    +urgence : Boolean
+}
+
+AgentSécurité "1" -- "0..*" Incident : intervient sur
+Scène "1" -- "0..*" Matériel : utilise
+
+' Classes principales pour les sponsors et contrats
+class Sponsor {
+    +nom : String
+    +engagement : String
+}
+
+class Contrat {
+    +type : String
+    +valeur : float
+}
+
+Sponsor "1" -- "0..*" Contrat : signe
+Contrat "1" -- "0..*" Performance : sponsorise
+
+' Classes principales pour l'analyse des performances
+class ResponsableAnalyse {
+    +nom : String
+    +collecterRetours()
+    +analyserPerformances()
+}
+
+class Rapport {
+    +type : String
+    +performanceScore : int
+}
+
+class Feedback {
+    +commentaire : String
+    +note : int
+}
+
+Artiste "1" -- "0..*" Rapport : reçoit
+Festivalier "1" -- "0..*" Feedback : fournit
+ResponsableAnalyse "1" -- "0..*" Rapport : génère
+
+@enduml

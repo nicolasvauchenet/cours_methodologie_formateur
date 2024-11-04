@@ -1,0 +1,32 @@
+@startuml
+!pragma layout smetana
+title 2.3.4 - Diagramme de Classes : Accueil et services aux artistes
+
+class Artiste {
+    +nom : String
+    +demanderHébergement()
+}
+
+class Hébergement {
+    +hôtel : String
+    +adresse : String
+    +réserverChambre()
+}
+
+class Transport {
+    +véhicule : String
+    +heure : Date
+    +coordonnerTransport()
+}
+
+class RégisseurLogistique {
+    +gérerHébergement()
+    +planifierTransport()
+}
+
+Artiste "1" -- "0..*" Hébergement : hébergé dans
+RégisseurLogistique "1" -- "0..*" Hébergement : gère
+RégisseurLogistique "1" -- "0..*" Transport : planifie
+Artiste "1" -- "0..*" Transport : transporté par
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+!pragma layout smetana
+title 9.3.2 - Diagramme d'Activité : Collecte des retours des festivaliers
+
+start
+:Envoyer une demande de feedback aux festivaliers;
+:Réception des retours d'expérience;
+:Analyser les réponses des festivaliers;
+if (Retour négatif ?) then (oui)
+    :Identifier les problèmes;
+    :Proposer des améliorations;
+else (non)
+    :Archiver le feedback;
+endif
+:Utiliser les retours pour améliorer l'organisation;
+stop
+@enduml

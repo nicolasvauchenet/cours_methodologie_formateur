@@ -1,0 +1,98 @@
+@startuml
+!pragma layout smetana
+title Diagramme Entité-Relation Global : Système du Festival de Musique
+
+' Entités principales liées aux artistes, performances et scènes
+entity Artiste {
+    *id : int
+    *nom : String
+    *genre : String
+}
+
+entity Performance {
+    *id : int
+    *horaire : Date
+    *scène : String
+}
+
+entity Scène {
+    *id : int
+    *nom : String
+    *localisation : String
+}
+
+Artiste ||--o{ Performance : "participe à"
+Scène ||--o{ Performance : "accueille"
+
+' Entités liées à la billetterie
+entity Festivalier {
+    *id : int
+    *nom : String
+    *email : String
+}
+
+entity Billet {
+    *id : int
+    *numéro : String
+    *prix : float
+    *date : Date
+}
+
+Festivalier ||--o{ Billet : "achète"
+Performance ||--o{ Billet : "associé à"
+
+' Entités liées à la logistique et sécurité
+entity AgentSécurité {
+    *id : int
+    *nom : String
+    *poste : String
+}
+
+entity Matériel {
+    *id : int
+    *type : String
+    *quantité : int
+}
+
+entity Incident {
+    *id : int
+    *type : String
+    *localisation : String
+    *urgence : Boolean
+}
+
+AgentSécurité ||--o{ Incident : "intervient sur"
+Scène ||--o{ Matériel : "nécessite"
+
+' Entités liées aux sponsors et partenariats
+entity Sponsor {
+    *id : int
+    *nom : String
+    *engagement : String
+}
+
+entity Contrat {
+    *id : int
+    *type : String
+    *valeur : float
+}
+
+Sponsor ||--o{ Contrat : "signe"
+Contrat ||--o{ Performance : "sponsorise"
+
+' Entités liées à l'analyse des performances
+entity Rapport {
+    *id : int
+    *type : String
+    *performanceScore : int
+}
+
+entity ResponsableAnalyse {
+    *id : int
+    *nom : String
+}
+
+Artiste ||--o{ Rapport : "évalué par"
+ResponsableAnalyse ||--o{ Rapport : "génère"
+
+@enduml

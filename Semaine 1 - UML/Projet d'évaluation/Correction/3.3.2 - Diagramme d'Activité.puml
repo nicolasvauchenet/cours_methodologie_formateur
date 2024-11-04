@@ -1,0 +1,17 @@
+@startuml
+!pragma layout smetana
+title 3.3.2 - Diagramme d'Activité : Coordination des équipes techniques
+
+start
+:Recevoir ordre de mission du régisseur;
+:Assignation des équipes techniques aux scènes;
+if (Matériel disponible ?) then (oui)
+    :Attribuer le matériel nécessaire;
+    :Envoyer confirmation aux équipes;
+else (non)
+    :Alerter régisseur technique;
+endif
+:Coordonner les tâches avec l'équipe de sécurité;
+:Suivi de l'installation sur scène;
+stop
+@enduml

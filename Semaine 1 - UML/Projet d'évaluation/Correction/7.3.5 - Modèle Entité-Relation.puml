@@ -1,0 +1,33 @@
+@startuml
+!pragma layout smetana
+title 7.3.5 - Modèle Entité-Relation : Sécurité et gestion des urgences
+
+entity ResponsableSécurité {
+    *id : int
+    *nom : String
+}
+
+entity AgentSécurité {
+    *id : int
+    *nom : String
+    *poste : String
+}
+
+entity Incident {
+    *id : int
+    *type : String
+    *localisation : String
+    *urgence : Boolean
+}
+
+entity Intervention {
+    *id : int
+    *date : Date
+    *durée : int
+}
+
+ResponsableSécurité ||--o{ AgentSécurité : "supervise"
+AgentSécurité ||--o{ Incident : "intervient sur"
+Incident ||--o{ Intervention : "génère"
+
+@enduml

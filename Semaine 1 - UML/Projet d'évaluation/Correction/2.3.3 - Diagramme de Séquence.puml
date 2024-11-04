@@ -1,0 +1,19 @@
+@startuml
+!pragma layout smetana
+title 2.3.3 - Diagramme de Séquence : Coordination des transports
+
+actor "Régisseur Logistique" as regisseur
+participant "Système de gestion" as systeme
+participant "Base de données" as bdd
+participant "Transporteur" as transporteur
+participant "Artiste" as artiste
+
+regisseur -> systeme : Planifier transport
+systeme -> bdd : Vérifier disponibilité transporteur
+bdd --> systeme : Transporteur disponible
+systeme -> transporteur : Envoyer ordre de mission
+transporteur -> artiste : Confirmer transport
+artiste --> systeme : Confirmation de réception
+systeme -> regisseur : Transport planifié avec succès
+
+@enduml

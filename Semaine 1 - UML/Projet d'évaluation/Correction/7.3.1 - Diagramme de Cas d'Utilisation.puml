@@ -1,0 +1,16 @@
+@startuml
+!pragma layout smetana
+left to right direction
+title 7.3.1 - Diagramme de Cas d'Utilisation : Sécurité et gestion des urgences
+
+actor "Responsable Sécurité" as securite
+actor "Agent de sécurité" as agent
+actor "Système de gestion des urgences" as systeme
+
+securite --> (Planifier le déploiement des agents de sécurité)
+agent --> (Surveiller les zones critiques)
+agent --> (Intervenir en cas d'incident)
+systeme --> (Gérer les alertes d'urgence)
+systeme --> (Coordonner les équipes de secours)
+
+@enduml

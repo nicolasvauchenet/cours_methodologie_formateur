@@ -1,0 +1,17 @@
+@startuml
+!pragma layout smetana
+title 7.3.2 - Diagramme d'Activité : Déploiement des agents de sécurité
+
+start
+:Planifier les zones à surveiller;
+:Attribuer les agents à leurs positions;
+:Coordonner les agents avec les équipes de secours;
+:Vérifier la disponibilité des équipements de sécurité;
+:Envoyer les ordres de mission aux agents;
+if (Incident signalé ?) then (oui)
+    :Déployer les agents vers la zone critique;
+else (non)
+    :Surveillance continue;
+endif
+stop
+@enduml

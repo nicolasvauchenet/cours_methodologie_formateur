@@ -1,0 +1,26 @@
+@startuml
+!pragma layout smetana
+title 2.3.5 - Modèle Entité-Relation : Accueil et services aux artistes
+
+entity Artiste {
+    *id : int
+    *nom : String
+    *genre : String
+}
+
+entity Hébergement {
+    *id : int
+    *hôtel : String
+    *adresse : String
+}
+
+entity Transport {
+    *id : int
+    *véhicule : String
+    *heure : Date
+}
+
+Artiste ||--o{ Hébergement : "demande"
+Artiste ||--o{ Transport : "planifié"
+
+@enduml

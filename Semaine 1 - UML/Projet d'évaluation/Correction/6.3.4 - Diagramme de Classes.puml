@@ -1,0 +1,32 @@
+@startuml
+!pragma layout smetana
+title 6.3.4 - Diagramme de Classes : Gestion des budgets et des ressources
+
+class ResponsableFinancier {
+    +nom : String
+    +suivreBudget()
+    +allouerRessources()
+}
+
+class Budget {
+    +montant : float
+    +solde : float
+    +ajusterDépense()
+}
+
+class RessourceHumaine {
+    +nom : String
+    +poste : String
+    +gérerContrat()
+}
+
+class RapportFinancier {
+    +générerRapport()
+    +analyserDépenses()
+}
+
+ResponsableFinancier "1" -- "0..*" Budget : suit
+Budget -- RapportFinancier : génère
+ResponsableFinancier "1" -- "0..*" RessourceHumaine : alloue
+
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+!pragma layout smetana
+title 9.3.4 - Diagramme de Classes : Analyse des performances et retours d'expérience
+
+class ResponsableAnalyse {
+    +nom : String
+    +analyserPerformances()
+    +collecterRetours()
+}
+
+class Festivalier {
+    +nom : String
+    +donnerFeedback()
+}
+
+class Artiste {
+    +nom : String
+    +performanceScore : int
+    +recevoirRapport()
+}
+
+class Rapport {
+    +type : String
+    +générerRapport()
+}
+
+ResponsableAnalyse "1" -- "0..*" Rapport : génère
+Rapport -- Artiste : contient
+Festivalier -- ResponsableAnalyse : fournit feedback
+
+@enduml

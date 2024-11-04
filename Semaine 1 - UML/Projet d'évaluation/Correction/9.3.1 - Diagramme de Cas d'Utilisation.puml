@@ -1,0 +1,16 @@
+@startuml
+!pragma layout smetana
+left to right direction
+title 9.3.1 - Diagramme de Cas d'Utilisation : Analyse des performances
+
+actor "Responsable d'analyse" as responsable
+actor "Festivalier" as festivalier
+actor "Système d'analyse des performances" as systeme
+
+festivalier --> (Donner un retour d'expérience)
+responsable --> (Collecter les retours des festivaliers)
+responsable --> (Analyser les performances des artistes)
+systeme --> (Générer des rapports de performance)
+systeme --> (Suivre les indicateurs de satisfaction)
+
+@enduml

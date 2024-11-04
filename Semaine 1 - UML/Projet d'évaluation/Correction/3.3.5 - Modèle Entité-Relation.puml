@@ -1,0 +1,31 @@
+@startuml
+!pragma layout smetana
+title 3.3.5 - Modèle Entité-Relation : Logistique du festival
+
+entity Régisseur {
+    *id : int
+    *nom : String
+}
+
+entity ÉquipeTechnique {
+    *id : int
+    *nom : String
+    *spécialité : String
+}
+
+entity Matériel {
+    *id : int
+    *type : String
+    *quantité : int
+}
+
+entity Inventaire {
+    *id : int
+    *gérerInventaire()
+}
+
+Régisseur ||--o{ ÉquipeTechnique : "coordonne"
+ÉquipeTechnique ||--o{ Matériel : "utilise"
+Inventaire ||--o{ Matériel : "contient"
+
+@enduml

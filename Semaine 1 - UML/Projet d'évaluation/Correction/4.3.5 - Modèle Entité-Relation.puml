@@ -1,0 +1,32 @@
+@startuml
+!pragma layout smetana
+title 4.3.5 - Modèle Entité-Relation : Communication et publicité
+
+entity ResponsableMarketing {
+    *id : int
+    *nom : String
+}
+
+entity Campagne {
+    *id : int
+    *nom : String
+    *cible : String
+    *canal : String
+}
+
+entity Festivalier {
+    *id : int
+    *nom : String
+    *email : String
+}
+
+entity Statistiques {
+    *id : int
+    *interactions : int
+}
+
+ResponsableMarketing ||--o{ Campagne : "crée"
+Festivalier ||--o{ Campagne : "reçoit"
+Campagne ||--o{ Statistiques : "génère"
+
+@enduml

@@ -1,0 +1,50 @@
+@startuml
+!pragma layout smetana
+left to right direction
+title 1.3.1 - Diagramme de Cas d'Utilisation : Programmation des artistes
+
+actor "Artiste" as artiste
+actor "Régisseur artistique" as regisseur
+actor "Système de programmation" as système <<système>>
+
+rectangle "Programmation des artistes" as programmation {
+    (Gestion des créneaux horaires)
+    (Attributions des artistes aux scènes)
+    (Coordination des horaires pour éviter les conflits)
+}
+
+rectangle "Notification et communication" as notification {
+    (Notification des artistes et équipes techniques)
+}
+
+rectangle "Gestion des performances" as performances {
+    (Suivi des performances)
+    (Validation des conflits d'horaires)
+}
+
+rectangle "Gestion des utilisateurs" as utilisateurs {
+    (Authentification et autorisation)
+    (Gestion des Artistes)
+    (Gestion des Performances)
+}
+
+' Connexions entre domaines
+(Authentification et autorisation) <.. (Gestion des créneaux horaires) : <<include>>
+(Gestion des créneaux horaires) ..> (Notification des artistes et équipes techniques) : <<extends>>
+(Suivi des performances) <.. (Attributions des artistes aux scènes) : <<include>>
+
+regisseur -- (Gestion des créneaux horaires)
+regisseur -- (Attributions des artistes aux scènes)
+regisseur -- (Coordination des horaires pour éviter les conflits)
+
+artiste -- (Attributions des artistes aux scènes)
+artiste -- (Suivi des performances)
+
+(Notification des artistes et équipes techniques) -- système
+(Validation des conflits d'horaires) -- système
+(Suivi des performances) -- système
+(Authentification et autorisation) -- système
+(Gestion des Artistes) -- système
+(Gestion des Performances) -- système
+
+@enduml

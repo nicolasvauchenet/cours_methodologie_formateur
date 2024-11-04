@@ -1,0 +1,16 @@
+@startuml
+!pragma layout smetana
+left to right direction
+title 4.3.1 - Diagramme de Cas d'Utilisation : Communication et publicité
+
+actor "Responsable Marketing" as marketing
+actor "Festivalier" as festivalier
+actor "Système de gestion de campagnes" as systeme
+
+marketing --> (Créer une campagne publicitaire)
+marketing --> (Envoyer des newsletters)
+systeme --> (Suivre l'impact des campagnes)
+festivalier --> (Recevoir la communication)
+festivalier --> (Interagir avec les réseaux sociaux)
+
+@enduml

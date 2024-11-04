@@ -1,0 +1,32 @@
+@startuml
+!pragma layout smetana
+title 8.3.5 - Modèle Entité-Relation : Gestion des partenariats
+
+entity ResponsablePartenariats {
+    *id : int
+    *nom : String
+}
+
+entity Sponsor {
+    *id : int
+    *nom : String
+    *engagement : String
+}
+
+entity Contrat {
+    *id : int
+    *type : String
+    *valeur : float
+}
+
+entity Contrepartie {
+    *id : int
+    *description : String
+    *valeur : float
+}
+
+ResponsablePartenariats ||--o{ Contrat : "gère"
+Sponsor ||--o{ Contrat : "signe"
+Contrat ||--o{ Contrepartie : "inclut"
+
+@enduml

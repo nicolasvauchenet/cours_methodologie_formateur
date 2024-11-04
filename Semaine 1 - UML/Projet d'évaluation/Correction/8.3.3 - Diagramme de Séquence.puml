@@ -1,0 +1,17 @@
+@startuml
+!pragma layout smetana
+title 8.3.3 - Diagramme de Séquence : Suivi des contreparties
+
+actor "Responsable Partenariats" as partenariat
+participant "Système de gestion des sponsors" as systeme
+participant "Sponsor" as sponsor
+participant "Base de données" as bdd
+
+partenariat -> systeme : Créer un suivi des contreparties
+systeme -> bdd : Enregistrer les contreparties
+systeme -> sponsor : Envoyer rapport de suivi des contreparties
+sponsor -> systeme : Confirmer réception
+systeme -> partenariat : Mise à jour des engagements
+partenariat -> systeme : Valider le suivi des contreparties
+
+@enduml

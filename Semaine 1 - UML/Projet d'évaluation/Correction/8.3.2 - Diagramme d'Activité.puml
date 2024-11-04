@@ -1,0 +1,17 @@
+@startuml
+!pragma layout smetana
+title 8.3.2 - Diagramme d'Activité : Gestion des contrats de sponsor
+
+start
+:Créer un nouveau contrat de sponsor;
+:Valider les engagements et contreparties;
+:Soumettre le contrat au sponsor;
+if (Sponsor accepte ?) then (oui)
+    :Signer le contrat;
+    :Stocker le contrat signé;
+else (non)
+    :Revoir les termes du contrat;
+endif
+:Suivre les contreparties offertes au sponsor;
+stop
+@enduml

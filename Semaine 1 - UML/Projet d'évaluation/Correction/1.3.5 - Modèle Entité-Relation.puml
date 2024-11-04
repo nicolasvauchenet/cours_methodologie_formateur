@@ -1,0 +1,26 @@
+@startuml
+!pragma layout smetana
+title 1.3.5 - Modèle Entité-Relation : Programmation des artistes
+
+entity Artiste {
+    *id : int
+    *nom : String
+    *genre : String
+}
+
+entity Performance {
+    *id : int
+    *horaire : Date
+    *scène : String
+}
+
+entity Scène {
+    *id : int
+    *nom : String
+    *localisation : String
+}
+
+Artiste ||--o{ Performance : "participer"
+Scène ||--o{ Performance : "se déroule sur"
+
+@enduml

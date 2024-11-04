@@ -1,0 +1,31 @@
+@startuml
+!pragma layout smetana
+title 5.3.4 - Diagramme de Classes : Gestion de la billetterie
+
+class Festivalier {
+    +nom : String
+    +acheterBillet()
+}
+
+class Billet {
+    +numéro : String
+    +prix : float
+    +date : Date
+    +vérifierDisponibilité()
+    +valider()
+}
+
+class SystèmeBilletterie {
+    +suivreVentes()
+    +vérifierDisponibilité()
+}
+
+class Paiement {
+    +effectuerPaiement()
+}
+
+Festivalier "1" -- "0..*" Billet : achète
+SystèmeBilletterie -- Billet : gère
+SystèmeBilletterie -- Paiement : effectue
+
+@enduml

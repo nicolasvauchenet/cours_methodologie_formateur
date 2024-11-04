@@ -1,0 +1,17 @@
+@startuml
+!pragma layout smetana
+title 6.3.3 - Diagramme de Séquence : Gestion des ressources humaines
+
+actor "Responsable RH" as rh
+participant "Système de gestion des ressources humaines" as systeme
+participant "Base de données" as bdd
+participant "Employé" as employe
+
+rh -> systeme : Ajouter un nouvel employé
+systeme -> bdd : Enregistrer les informations de l'employé
+bdd --> systeme : Confirmation d'enregistrement
+systeme -> employe : Envoyer contrat et informations
+employe --> systeme : Confirmer réception
+systeme -> rh : Gestion des ressources mise à jour
+
+@enduml

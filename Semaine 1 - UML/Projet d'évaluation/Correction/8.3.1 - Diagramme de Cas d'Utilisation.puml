@@ -1,0 +1,16 @@
+@startuml
+!pragma layout smetana
+left to right direction
+title 8.3.1 - Diagramme de Cas d'Utilisation : Gestion des partenariats
+
+actor "Responsable Partenariats" as partenariat
+actor "Sponsor" as sponsor
+actor "Système de gestion des sponsors" as systeme
+
+partenariat --> (Gérer les contrats de sponsor)
+partenariat --> (Suivre les contreparties offertes aux sponsors)
+sponsor --> (Signer un contrat de partenariat)
+systeme --> (Envoyer un rapport sur la visibilité des sponsors)
+systeme --> (Gérer les engagements contractuels)
+
+@enduml

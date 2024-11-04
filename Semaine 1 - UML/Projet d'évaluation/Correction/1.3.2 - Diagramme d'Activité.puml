@@ -1,0 +1,16 @@
+@startuml
+!pragma layout smetana
+title 1.3.2 - Diagramme d'Activité : Gestion des créneaux horaires
+
+start
+:Vérifier disponibilité des créneaux;
+:Attribuer artiste à un créneau;
+if (Conflit d'horaires ?) then (oui)
+    :Avertir régisseur;
+    :Proposer autre créneau;
+else (non)
+    :Confirmer l'attribution;
+endif
+:Envoyer notification à l'artiste et à l'équipe technique;
+stop
+@enduml

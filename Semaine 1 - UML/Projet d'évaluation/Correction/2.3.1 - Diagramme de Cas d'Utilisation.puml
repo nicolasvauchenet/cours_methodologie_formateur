@@ -1,0 +1,52 @@
+@startuml
+!pragma layout smetana
+title 2.3.1 - Diagramme de Cas d'Utilisation : Accueil et services aux artistes
+
+actor "Artiste" as artiste
+actor "Régisseur Logistique" as regisseur
+actor "Système de gestion" as systeme <<système>>
+
+' Domaine : Gestion de l'hébergement
+rectangle "Gestion de l'hébergement" as hebergement {
+    (Gérer hébergement des artistes)
+    (Soumettre des demandes d'hébergement)
+}
+
+' Domaine : Transport et logistique
+rectangle "Transport et logistique" as transport {
+    (Coordonner transports pour les déplacements des artistes)
+    (Gérer les réservations de transport)
+}
+
+' Domaine : Services et demandes spécifiques
+rectangle "Services et demandes spécifiques" as services {
+    (Gérer les services de catering)
+    (Suivi des demandes spécifiques des artistes)
+}
+
+' Domaine : Gestion automatisée
+rectangle "Gestion automatisée" as system_operations {
+    (Authentification et autorisation)
+    (Suivi et validation des demandes d'hébergement)
+    (Coordonner notifications liées aux demandes)
+}
+
+' Connexions entre domaines
+(Authentification et autorisation) <.. (Gérer hébergement des artistes) : <<include>>
+(Suivi et validation des demandes d'hébergement) <.. (Soumettre des demandes d'hébergement) : <<include>>
+(Gérer les réservations de transport) <.. (Coordonner transports pour les déplacements des artistes) : <<include>>
+(Coordonner notifications liées aux demandes) ..> (Suivi des demandes spécifiques des artistes) : <<extends>>
+
+' Interactions avec les acteurs humains
+regisseur -- (Gérer hébergement des artistes)
+regisseur -- (Coordonner transports pour les déplacements des artistes)
+regisseur -- (Gérer les services de catering)
+regisseur -- (Suivi des demandes spécifiques des artistes)
+artiste -- (Soumettre des demandes d'hébergement)
+
+' Interactions avec le système
+(Suivi et validation des demandes d'hébergement) -- systeme
+(Authentification et autorisation) -- systeme
+(Coordonner notifications liées aux demandes) -- systeme
+
+@enduml

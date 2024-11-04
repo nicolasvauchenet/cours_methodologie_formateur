@@ -1,0 +1,34 @@
+@startuml
+!pragma layout smetana
+title 8.3.4 - Diagramme de Classes : Gestion des sponsors
+
+class ResponsablePartenariats {
+    +nom : String
+    +gérerContrats()
+    +suivreContreparties()
+}
+
+class Sponsor {
+    +nom : String
+    +engagement : String
+    +recevoirRapport()
+}
+
+class Contrat {
+    +type : String
+    +valeur : float
+    +signerContrat()
+}
+
+class Contrepartie {
+    +description : String
+    +valeur : float
+    +suivreContrepartie()
+}
+
+ResponsablePartenariats "1" -- "0..*" Contrat : gère
+Sponsor "1" -- "0..*" Contrat : signe
+Contrat -- Contrepartie : inclut
+ResponsablePartenariats -- Contrepartie : suit
+
+@enduml

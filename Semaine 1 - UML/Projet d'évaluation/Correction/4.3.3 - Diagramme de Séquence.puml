@@ -1,0 +1,16 @@
+@startuml
+!pragma layout smetana
+title 4.3.3 - Diagramme de Séquence : Communication avec les festivaliers
+
+actor "Responsable Marketing" as marketing
+participant "Système de gestion de campagnes" as systeme
+participant "Base de données" as bdd
+participant "Festivalier" as festivalier
+
+marketing -> systeme : Créer campagne publicitaire
+systeme -> bdd : Enregistrer campagne
+systeme -> festivalier : Envoyer newsletter ou notification
+festivalier -> systeme : Interagir avec la publicité
+systeme -> marketing : Rapport des interactions
+
+@enduml

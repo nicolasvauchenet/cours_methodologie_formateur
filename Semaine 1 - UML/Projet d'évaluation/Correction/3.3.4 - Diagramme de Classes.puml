@@ -1,0 +1,33 @@
+@startuml
+!pragma layout smetana
+title 3.3.4 - Diagramme de Classes : Logistique du festival
+
+class RégisseurTechnique {
+    +nom : String
+    +planifierLogistique()
+    +coordonnerÉquipes()
+}
+
+class ÉquipeTechnique {
+    +nom : String
+    +spécialité : String
+    +effectuerTâche()
+}
+
+class Matériel {
+    +type : String
+    +quantité : int
+    +disponible : Boolean
+}
+
+class Inventaire {
+    +gérerInventaire()
+    +vérifierDisponibilité()
+}
+
+RégisseurTechnique "1" -- "0..*" ÉquipeTechnique : coordonne
+RégisseurTechnique "1" -- "0..*" Matériel : demande
+Inventaire -- Matériel : contient
+ÉquipeTechnique -- Matériel : utilise
+
+@enduml

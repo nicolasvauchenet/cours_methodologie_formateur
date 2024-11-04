@@ -1,0 +1,17 @@
+@startuml
+!pragma layout smetana
+title 5.3.3 - Diagramme de Séquence : Validation des billets à l'entrée
+
+actor "Festivalier" as festivalier
+participant "Système de billetterie" as systeme
+participant "Base de données" as bdd
+participant "Agent de contrôle" as agent
+
+festivalier -> agent : Présenter billet
+agent -> systeme : Scanner billet
+systeme -> bdd : Vérifier validité du billet
+bdd --> systeme : Billet valide
+systeme -> agent : Confirmer validité
+agent -> festivalier : Accès autorisé
+
+@enduml

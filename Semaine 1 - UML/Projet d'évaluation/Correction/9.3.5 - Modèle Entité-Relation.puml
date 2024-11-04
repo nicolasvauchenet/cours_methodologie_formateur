@@ -1,0 +1,32 @@
+@startuml
+!pragma layout smetana
+title 9.3.5 - Modèle Entité-Relation : Analyse des performances
+
+entity ResponsableAnalyse {
+    *id : int
+    *nom : String
+}
+
+entity Artiste {
+    *id : int
+    *nom : String
+    *performanceScore : int
+}
+
+entity Festivalier {
+    *id : int
+    *nom : String
+    *feedback : String
+}
+
+entity Rapport {
+    *id : int
+    *type : String
+    *performanceScore : int
+}
+
+ResponsableAnalyse ||--o{ Rapport : "génère"
+Rapport ||--o{ Artiste : "évalue"
+Festivalier ||--o{ ResponsableAnalyse : "fournit feedback"
+
+@enduml

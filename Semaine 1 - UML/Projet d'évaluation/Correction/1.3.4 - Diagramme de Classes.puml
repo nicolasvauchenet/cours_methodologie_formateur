@@ -1,0 +1,29 @@
+@startuml
+!pragma layout smetana
+title 1.3.4 - Diagramme de Classes : Gestion des horaires des artistes
+
+class Artiste {
+    +nom : String
+    +genre : String
+    +performer()
+}
+
+class Performance {
+    +horaire : Date
+    +scène : String
+    +attribuerArtiste()
+}
+
+class RégisseurArtistique {
+    +gérerCréneaux()
+}
+
+class Notification {
+    +envoyerNotification()
+}
+
+Artiste "1" -- "0..*" Performance : participe à
+RégisseurArtistique "1" -- "0..*" Performance : gère
+Notification -- Performance : notifie
+
+@enduml

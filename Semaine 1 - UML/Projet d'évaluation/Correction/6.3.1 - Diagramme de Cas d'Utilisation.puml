@@ -1,0 +1,14 @@
+@startuml
+!pragma layout smetana
+left to right direction
+title 6.3.1 - Diagramme de Cas d'Utilisation : Gestion des budgets
+
+actor "Responsable financier" as financier
+actor "Système de gestion des budgets" as systeme
+
+financier --> (Suivre les dépenses et recettes)
+financier --> (Allouer les ressources financières)
+systeme --> (Générer des rapports financiers)
+systeme --> (Surveiller l'état des budgets en temps réel)
+
+@enduml

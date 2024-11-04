@@ -1,0 +1,32 @@
+@startuml
+!pragma layout smetana
+title 7.3.4 - Diagramme de Classes : Sécurité et gestion des urgences
+
+class ResponsableSécurité {
+    +nom : String
+    +planifierDéploiement()
+    +coordonnerInterventions()
+}
+
+class AgentSécurité {
+    +nom : String
+    +poste : String
+    +intervenirIncident()
+}
+
+class SystèmeGestionUrgences {
+    +gérerAlertes()
+    +suivreInterventions()
+}
+
+class Incident {
+    +type : String
+    +localisation : String
+    +urgence : Boolean
+}
+
+ResponsableSécurité "1" -- "0..*" AgentSécurité : supervise
+SystèmeGestionUrgences -- Incident : gère
+AgentSécurité -- Incident : intervient sur
+
+@enduml

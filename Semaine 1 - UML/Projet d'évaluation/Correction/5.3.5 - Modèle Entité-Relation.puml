@@ -1,0 +1,27 @@
+@startuml
+!pragma layout smetana
+title 5.3.5 - Modèle Entité-Relation : Gestion de la billetterie
+
+entity Festivalier {
+    *id : int
+    *nom : String
+    *email : String
+}
+
+entity Billet {
+    *id : int
+    *numéro : String
+    *prix : float
+    *date : Date
+}
+
+entity Paiement {
+    *id : int
+    *montant : float
+    *méthode : String
+}
+
+Festivalier ||--o{ Billet : "achète"
+Billet ||--o{ Paiement : "lié à"
+
+@enduml
