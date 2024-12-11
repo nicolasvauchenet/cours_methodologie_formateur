@@ -1,0 +1,90 @@
+@startuml
+hide footbox
+skinparam footerPadding 20
+actor Organisateur
+participant "Système de Gestion" as Systeme
+participant "Système d'Informations" as SystemeInfo
+participant "Service de Notification" as NotificationService
+
+Organisateur -> Systeme : Demande de création de conférence
+activate Systeme
+Systeme --> Systeme : <<Création de l'objet Conférence>>
+Systeme -> SystemeInfo : Sauvegarde de la conférence
+activate SystemeInfo
+Systeme <-- SystemeInfo : Confirmation de sauvegarde
+deactivate SystemeInfo
+Systeme --> Organisateur : Confirmation de création
+deactivate Systeme
+
+Organisateur -> Systeme : Demande de liste des participants
+activate Systeme
+Systeme -> SystemeInfo : Récupération de la liste des participants
+activate SystemeInfo
+Systeme <-- SystemeInfo : Liste des participants
+deactivate SystemeInfo
+Systeme --> Organisateur : Liste des participants
+deactivate Systeme
+
+Organisateur -> Systeme : Envoi des participants sélectionnés
+activate Systeme
+Systeme -> SystemeInfo : Mise à jour avec la sélection
+activate SystemeInfo
+Systeme <-- SystemeInfo : Confirmation de mise à jour
+deactivate SystemeInfo
+deactivate Systeme
+
+Systeme -> NotificationService : Transmettre la liste des participants
+activate NotificationService
+NotificationService -> Participants : Envoi des invitations
+NotificationService --> Systeme : Confirmation d'Envoi des invitations
+
+loop Jusqu'à réception des réponses
+    Participants --> NotificationService : Réponse (Accepte ou Refuse)
+    alt Participant accepte
+        NotificationService --> Systeme : Réponse positive
+        activate Systeme
+        Systeme -> SystemeInfo : Mise à jour : Participant confirmé
+        activate SystemeInfo
+        Systeme <-- SystemeInfo : Confirmation de mise à jour
+        deactivate SystemeInfo
+        deactivate Systeme
+    else Participant refuse
+        NotificationService --> Systeme : Réponse négative
+        activate Systeme
+        Systeme -> SystemeInfo : Mise à jour : Participant refusé
+        activate SystemeInfo
+        Systeme <-- SystemeInfo : Confirmation de mise à jour
+        deactivate SystemeInfo
+        deactivate Systeme
+    end
+end
+deactivate NotificationService
+
+alt Tous les participants confirmés
+    Systeme --> Organisateur : Liste confirmée
+else Modification requise
+    Systeme --> Organisateur : Demande de modification de sélection
+end
+
+Systeme -> Systeme : Compiler la liste définitive des participants
+activate Systeme
+Systeme --> Organisateur : Liste définitive des participants
+Organisateur -> Systeme : Choisir les horaires
+Systeme -> SystemeInfo : Sauvegarde des horaires
+activate SystemeInfo
+Systeme <-- SystemeInfo : Confirmation de sauvegarde
+deactivate SystemeInfo
+Systeme -> NotificationService : Envoi des confirmations aux participants
+activate NotificationService
+NotificationService -> Participants : Confirmation des horaires
+NotificationService --> Systeme : Confirmation des notifications
+
+deactivate NotificationService
+deactivate Systeme
+
+destroy Systeme
+destroy SystemeInfo
+destroy NotificationService
+destroy Organisateur
+
+@enduml
